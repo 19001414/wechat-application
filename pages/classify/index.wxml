@@ -24,7 +24,7 @@
 	<!--分类栏-->
 	<view class='top_tab'>
 		<view class='weui-flex'  >
-			<view bindtap="changeTab" class="weui-flex__item {{curTab==idx? 'active': ''}}" wx:for="{{topbar}}" wx:for-index="idx" data-idx="{{idx}}"><view class="placeholder">{{item}}</view></view>
+			<view bindtap="changeTab" class="weui-flex__item {{curTab==idx? 'active': ''}}" wx:key="" wx:for="{{topbar}}" wx:for-index="idx" data-idx="{{idx}}"><view class="placeholder">{{item}}</view></view>
 		</view>
 	</view>
 	<!--商品列表-->

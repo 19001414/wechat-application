@@ -2,31 +2,32 @@ const App = getApp()
 
 Page({
     data: {
-        classify: {},
+        //classify: {},
         prompt: {
             hidden: !0,
         },
         topbar:['全部','推荐','价格','套餐'],
-        goods: {
-            items: [],
-            params: {
-                page : 1,
-                limit: 10,
-            },
-            paginate: {}
-        }
+        goods: {}
 
     },
     onLoad() {
         this.goods = new App.HttpResource('/goods/:id', {id: '@id'})
-        this.classify = new App.HttpResource('/classify/:id', {id: '@id'})
+        //this.classify = new App.HttpResource('/classify/:id', {id: '@id'})
     },
     onShow() {
         this.onPullDownRefresh()
     },
     initData() {
         this.setData({
-            classify: {
+            // classify: {
+            //     items: [],
+            //     params: {
+            //         page : 1,
+            //         limit: 10,
+            //     },
+            //     paginate: {}
+            // },
+            goods: {
                 items: [],
                 params: {
                     page : 1,
@@ -36,6 +37,13 @@ Page({
             }
         })
     },
+    navigateTo(e) {
+        console.log(e)
+        App.WxService.navigateTo('/pages/goods/detail/index', {
+            id: e.currentTarget.dataset.id
+        })
+    },
+    //获得全部商品
     getGoods() {
         const goods = this.data.goods
         const params = goods.params
@@ -57,12 +65,6 @@ Page({
                 }
             })
     },
-    navigateTo(e) {
-        console.log(e)
-        App.WxService.navigateTo('/pages/goods/list/index', {
-            type: e.currentTarget.dataset.id
-        })
-    },
     search() {
         App.WxService.navigateTo('/pages/search/index')
     },
@@ -72,36 +74,38 @@ Page({
             curTab:e.currentTarget.dataset.idx
         })
     },
-    getClassify() {
-        const classify = this.data.classify
-        const params = classify.params
-
-        // App.HttpService.getClassify(params)
-        this.classify.queryAsync(params)
-        .then(data => {
-            console.log(data)
-            if (data.meta.code == 0) {
-                classify.items = [...classify.items, ...data.data.items]
-                classify.paginate = data.data.paginate
-                classify.params.page = data.data.paginate.next
-                classify.params.limit = data.data.paginate.perPage
-                this.setData({
-                    classify: classify,
-                    'prompt.hidden': classify.items.length,
-                })
-            }
-        })
-    },
+    // getClassify() {
+    //     const classify = this.data.classify
+    //     const params = classify.params
+    //
+    //     // App.HttpService.getClassify(params)
+    //     this.classify.queryAsync(params)
+    //     .then(data => {
+    //         console.log(data)
+    //         if (data.meta.code == 0) {
+    //             classify.items = [...classify.items, ...data.data.items]
+    //             classify.paginate = data.data.paginate
+    //             classify.params.page = data.data.paginate.next
+    //             classify.params.limit = data.data.paginate.perPage
+    //             this.setData({
+    //                 classify: classify,
+    //                 'prompt.hidden': classify.items.length,
+    //             })
+    //         }
+    //     })
+    // },
     onPullDownRefresh() {
         this.initData()
-        this.getClassify()
+        //this.getClassify()
         this.getGoods()
     },
     onReachBottom() {
         this.lower()
     },
     lower() {
-        if (!this.data.classify.paginate.hasNext) return
-        this.getClassify()
+        // if (!this.data.classify.paginate.hasNext) return
+        //this.getClassify()
+        if (!this.data.goods.paginate.hasNext) return
+        this.getGoods()
     },
 })

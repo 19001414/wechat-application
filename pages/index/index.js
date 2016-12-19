@@ -41,11 +41,12 @@ Page({
     onLoad() {
         this.banner = new App.HttpResource('/banner/:id', {id: '@id'})
         this.goods = new App.HttpResource('/goods/:id', {id: '@id'})
-        this.classify = new App.HttpResource('/classify/:id', {id: '@id'})
+        //this.classify = new App.HttpResource('/classify/:id', {id: '@id'})
+        this.getGoods()
     },
     onShow() {
         this.getBanners()
-        this.getClassify()
+        //this.getClassify()
     },
     navigateTo(e) {
         console.log(e)
@@ -69,26 +70,26 @@ Page({
         	}
         })
     },
-    getClassify() {
-        // App.HttpService.getClassify({
-        //     page: 1, 
-        //     limit: 4, 
-        // })
-        this.classify.queryAsync({
-            page: 1, 
-            limit: 4, 
-        })
-        .then(data => {
-            console.log(data)
-            if (data.meta.code == 0) {
-                this.setData({
-                    navList: data.data.items,
-                    'goods.params.type': data.data.items[0]._id
-                })
-                this.getGoods()
-            }
-        })
-    },
+    // getClassify() {
+    //     // App.HttpService.getClassify({
+    //     //     page: 1,
+    //     //     limit: 4,
+    //     // })
+    //     this.classify.queryAsync({
+    //         page: 1,
+    //         limit: 4,
+    //     })
+    //     .then(data => {
+    //         console.log(data)
+    //         if (data.meta.code == 0) {
+    //             this.setData({
+    //                 navList: data.data.items,
+    //                 'goods.params.type': data.data.items[0]._id
+    //             })
+    //             this.getGoods()
+    //         }
+    //     })
+    // },
     getGoods() {
         const goods = this.data.goods
         const params = goods.params

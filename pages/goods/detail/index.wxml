@@ -12,8 +12,8 @@
         <text class="remark">{{ goods.item.remark }}</text>
         <view class="price">销售价¥ {{ goods.item.price }}</view>
     </view>
-    <view class='weui-flex btn-buy' bindtap="nowBuy">
-        <view class='weui-flex__item buyNow'>
+    <view class='weui-flex btn-buy' >
+        <view class='weui-flex__item buyNow' bindtap="nowBuy">
             <text>立即购买</text>
         </view>
         <view class=" weui-flex__item joinCart" bindtap="addCart">

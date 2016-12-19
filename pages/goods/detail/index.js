@@ -50,10 +50,22 @@ Page({
         })
     },
     showToast(message) {
-        App.WxService.showToast({
-            title   : message, 
-            icon    : 'success', 
-            duration: 1500, 
+        // App.WxService.showToast({
+        //     title   : message,
+        //     icon    : 'success',
+        //     duration: 1500,
+        // })
+        wx.showModal({
+            title:message,
+            content:'',
+            cancelText:'继续逛逛',
+            confirmText:'立即结算',
+            success:function (res) {
+                if(res.confirm){
+                   // wx.redirectTo('/pages/cart/index')
+                    App.WxService.navigateTo('/pages/cart/index')
+                }
+            },
         })
     },
     getDetail(id) {
