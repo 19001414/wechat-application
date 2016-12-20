@@ -1,10 +1,8 @@
-import __config from '../etc/config'//引入服务器路径配置文件
-import es6 from '../assets/plugins/es6-promise'//引入支持promise的插件库
-//import poly from '../assets/plugins/polyfill.min.js'
+import __config from '../etc/config'
+import es6 from '../assets/plugins/es6-promise'
 
 class ServiceBase {
     constructor() {
-        //Object.assign() 方法可以把任意多个的源对象自身的可枚举属性拷贝给目标对象，然后返回目标对象。
         Object.assign(this, {
             $$basePath: __config.basePath
         })
@@ -44,7 +42,6 @@ class ServiceBase {
     /**
      * __getPromise
      */
-    //判断是否存在promise
     __getPromise(Promise, resolver) {
         if(Promise) return new Promise(resolver)
         throw new Error('Promise library is not supported')
@@ -66,8 +63,8 @@ class ServiceBase {
      * @param {Object} params 请求参数
      */
     __defaultRequest(method = '', url = '', params = {}) {
-        const $$header = this.setHeaders()//设置请求头
-        const $$url = `${this.$$basePath}${this.$$prefix}${url}`//设置路径
+        const $$header = this.setHeaders()
+        const $$url = `${this.$$basePath}${this.$$prefix}${url}`
 
         return function(resolve, reject) {
             wx.request({
@@ -86,14 +83,16 @@ class ServiceBase {
         }
     }
 
-    /*
+    /**
      * 设置请求的 header , header 中不能设置 Referer
      */
     setHeaders() {
+        console.log('setHeaders', wx.getStorageSync('token'))
         return {
         	// 'Accept': 'application/json', 
         	// 'Content-type': 'application/json', 
-            'Authorization': 'Bearer ' + wx.getStorageSync('token'), 
+            'Authorization': 'Bearer ' + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjU4MzY4OTYxNGUyNzQ2NDc3MTY2YzFlNyIsImlhdCI6MTQ4MjIxNjAwNywiZXhwIjoxNDgyMjE5NjA3fQ.iqIDp--VORBLlNLLqvPc92TWMpPhNvUZMW0WTK6WZFA"
+            // wx.getStorageSync('token'), 
         }
     }
 }

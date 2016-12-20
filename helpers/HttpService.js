@@ -2,9 +2,9 @@ import ServiceBase from 'ServiceBase'
 
 class Service extends ServiceBase {
 	constructor() {
-		super()//子类必须调用super()方法
-		this.$$prefix = ''//前缀
-		this.$$path = {//配置路径
+		super()
+		this.$$prefix = ''
+		this.$$path = {
 			signIn  : '/user/sign/in',
 			banner  : '/banner', 
 			classify: '/classify', 

@@ -69,7 +69,6 @@ import es6 from '../assets/plugins/es6-promise'
 
  * ```
  */
-	// 创建资源实例对象，接收四个参数url, paramDefaults, actions, options
 class Resource {
     constructor(url, paramDefaults, actions, options) {
     	Object.assign(this, {
@@ -487,12 +486,7 @@ class Resource {
      */
     $http(obj) {
 		return new es6.Promise((resolve, reject) => {
-			//obj.success = (res) => resolve(res)
-			obj.success = (res) => {
-				console.log(111, res)
-				console.log(222, typeof res)
-				resolve(res)
-			}
+			obj.success = (res) => resolve(res)
 			obj.fail = (res) => reject(res)
             wx.request(obj)
         })
