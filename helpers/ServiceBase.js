@@ -1,5 +1,6 @@
 import __config from '../etc/config'//引入服务器路径配置文件
 import es6 from '../assets/plugins/es6-promise'//引入支持promise的插件库
+//import poly from '../assets/plugins/polyfill.min.js'
 
 class ServiceBase {
     constructor() {

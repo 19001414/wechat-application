@@ -6,6 +6,9 @@ Page({
         carts: {
             items: []
         },
+        checkboxItems: [
+            {name: '全选', value: '0', checked: true},
+        ],
         prompt: {
             hidden: !0,
             icon: '../../assets/images/iconfont-cart-empty.png',

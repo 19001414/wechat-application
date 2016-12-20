@@ -33,7 +33,7 @@ Page({
         },
         prompt: {
             hidden: !0,
-        },
+        },      
     },
     swiperchange(e) {
         // console.log(e.detail.current)
@@ -47,6 +47,7 @@ Page({
     onShow() {
         this.getBanners()
         //this.getClassify()
+        this.getGoods()
     },
     navigateTo(e) {
         console.log(e)
@@ -58,10 +59,15 @@ Page({
         App.WxService.navigateTo('/pages/search/index')
     },
     getBanners() {
-    	// App.HttpService.getBanners({is_show: !0})
-        this.banner.queryAsync({is_show: !0})
+        // console.log('getBanner')
+        // console.log('queryAsync', this.banner.queryAsync)
+        // console.log('queryAsync', typeof this.banner.queryAsync)
+        // console.log('this.banner', typeof this.banner)
+        // console.log('this.banner', Object.keys(this.banner))
+    	//App.HttpService.getBanners({is_show: !0})
+         this.banner.queryAsync({is_show: !0})
         .then(data => {
-        	console.log(data)
+        	console.log('banner',data)
         	if (data.meta.code == 0) {
                 data.data.items.forEach(n => n.path = App.renderImage(n.images[0].path))
         		this.setData({
@@ -93,8 +99,8 @@ Page({
     getGoods() {
         const goods = this.data.goods
         const params = goods.params
-        // App.HttpService.getGoods(params)
-        this.goods.queryAsync(params)
+        App.HttpService.getGoods(params)
+        //this.goods.queryAsync(params)
         .then(data => {
             console.log(data)
             if (data.meta.code == 0) {

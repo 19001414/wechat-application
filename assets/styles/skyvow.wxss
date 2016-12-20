@@ -43,9 +43,16 @@ page{
 }
 
 .button-sp-area {
-    margin: 20px auto 0;
-    width: 80%;
+    width: 100%;
     text-align: center;
+    position: fixed;
+    bottom:0;
+    right:0
+}
+.button-sp-area button.pay-btn,button.clear-btn{
+    display: inline-block;
+    font-size: 13px;
+    margin-left:15rpx;
 }
 
 .mini-btn{

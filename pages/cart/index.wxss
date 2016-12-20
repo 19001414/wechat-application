@@ -1,9 +1,14 @@
 .info-meta {
 	padding-right: 1em;
 }
-
+.clear_cart{
+    position: absolute;
+    right:0;
+    color:#ff0000;
+}
 .weui-media-box__bd_in-appmsg {
 	position: relative;
+
 }
 
 .weui-cell_active {

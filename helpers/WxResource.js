@@ -487,7 +487,12 @@ class Resource {
      */
     $http(obj) {
 		return new es6.Promise((resolve, reject) => {
-			obj.success = (res) => resolve(res)
+			//obj.success = (res) => resolve(res)
+			obj.success = (res) => {
+				console.log(111, res)
+				console.log(222, typeof res)
+				resolve(res)
+			}
 			obj.fail = (res) => reject(res)
             wx.request(obj)
         })
