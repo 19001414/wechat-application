@@ -20,7 +20,7 @@ import __Config from 'etc/config'
 App({
 	onLaunch() {
 		console.log('onLaunch')
-		console.log('token', this.WxService.getStorageSync('token'))
+		//console.log('token', this.WxService.getStorageSync('token'))
 		// console.log('__HttpResource', typeof __HttpResource)
 		// console.log('HttpResource', typeof this.HttpResource)
 		this.signIn()

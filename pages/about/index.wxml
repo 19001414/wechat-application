@@ -1,0 +1,13 @@
+<view class="about">
+	<view class="about-item">
+		<text class="about-item-title">关于我们</text>
+		<view>
+			<image src="http://qwm.winshares.cn/image/about1.png"></image>
+			<image src="http://qwm.winshares.cn/image/about2.png"></image>
+			<image src="http://qwm.winshares.cn/image/about3.png"></image>
+			<image src="http://qwm.winshares.cn/image/about4.png"></image>
+			<image src="http://qwm.winshares.cn/image/about5.png"></image>
+			<image src="http://qwm.winshares.cn/image/about6.png"></image>
+		</view>
+	</view>
+</view>

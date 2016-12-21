@@ -6,12 +6,13 @@ const interceptors = [{
 	request: function(request) {
 		request.header = request.header || {}
 		request.requestTimestamp = new Date().getTime()
-		console.log('interceptors', wx.getStorageSync('token'))
+		//console.log('interceptors', wx.getStorageSync('token'))
 		if (request.url.indexOf('/api') !== -1 && wx.getStorageSync('token')) {
-            request.header.Authorization = 'Bearer ' + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjU4MzY4OTYxNGUyNzQ2NDc3MTY2YzFlNyIsImlhdCI6MTQ4MjIxNjAwNywiZXhwIjoxNDgyMjE5NjA3fQ.iqIDp--VORBLlNLLqvPc92TWMpPhNvUZMW0WTK6WZFA"
-			// wx.getStorageSync('token')
+            request.header.Authorization = 'Bearer ' + wx.getStorageSync('token')
+			// "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjU4MzY4OTYxNGUyNzQ2NDc3MTY2YzFlNyIsImlhdCI6MTQ4MjIxNjAwNywiZXhwIjoxNDgyMjE5NjA3fQ.iqIDp--VORBLlNLLqvPc92TWMpPhNvUZMW0WTK6WZFA"
+			// 
         }
-		console.log('header',request.header)
+		//console.log('header',request.header)
 		wx.showToast({
 			title: '加载中',
 			icon: 'loading',

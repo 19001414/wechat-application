@@ -13,7 +13,9 @@
     "pages/goods/list/index",
     "pages/goods/detail/index",
     "pages/search/index",
-    "pages/user/index"
+    "pages/user/index",
+    "pages/about/index",
+    "pages/help/index"
   ],
   "window": {
     "navigationBarBackgroundColor": "#479de6",

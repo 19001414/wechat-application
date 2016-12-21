@@ -87,12 +87,13 @@ class ServiceBase {
      * 设置请求的 header , header 中不能设置 Referer
      */
     setHeaders() {
-        console.log('setHeaders', wx.getStorageSync('token'))
+        //console.log('setHeaders', wx.getStorageSync('token'))
         return {
         	// 'Accept': 'application/json', 
         	// 'Content-type': 'application/json', 
-            'Authorization': 'Bearer ' + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjU4MzY4OTYxNGUyNzQ2NDc3MTY2YzFlNyIsImlhdCI6MTQ4MjIxNjAwNywiZXhwIjoxNDgyMjE5NjA3fQ.iqIDp--VORBLlNLLqvPc92TWMpPhNvUZMW0WTK6WZFA"
-            // wx.getStorageSync('token'), 
+            'Authorization': 'Bearer ' +  wx.getStorageSync('token'), 
+            // "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjU4MzY4OTYxNGUyNzQ2NDc3MTY2YzFlNyIsImlhdCI6MTQ4MjIxNjAwNywiZXhwIjoxNDgyMjE5NjA3fQ.iqIDp--VORBLlNLLqvPc92TWMpPhNvUZMW0WTK6WZFA"
+            //
         }
     }
 }

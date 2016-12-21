@@ -6,9 +6,11 @@ Page({
         carts: {
             items: []
         },
-        checkboxItems: [
-            {name: '全选', value: '0', checked: true},
+        total:'',
+        selected:[
+            {select:false}
         ],
+        selectedAllStatus:false,
         prompt: {
             hidden: !0,
             icon: '../../assets/images/iconfont-cart-empty.png',
@@ -34,6 +36,7 @@ Page({
         }
     },
     onLoad() {
+        // this.sum()
     },
     onShow() {
         this.getCarts()
@@ -41,7 +44,7 @@ Page({
     getCarts() {
         App.HttpService.getCartByUser()
         .then(data => {
-            console.log(data)
+            console.log('购物车data',data)
             if (data.meta.code == 0) {
                 data.data.forEach(n => n.goods.thumb_url = App.renderImage(n.goods.images[0] && n.goods.images[0].path))
                 this.setData({
@@ -50,6 +53,65 @@ Page({
                 })
             }
         })
+    },
+    bindCheckbox: function(e) {
+        /*绑定点击事件，将checkbox样式改变为选中与非选中*/
+        //拿到下标值，以在carts作遍历指示用
+        var index = parseInt(e.currentTarget.dataset.index);
+        //console.log(index)
+        //原始的icon状态
+        var checked = this.data.selected[index].select;
+        //console.log(selected)
+        var carts = this.data.selected;
+        console.log(carts)
+        // // 对勾选状态取反
+        carts[index].select = !checked;
+        // // 写回经点击修改后的数组
+        this.setData({
+            selected: carts
+        });
+        this.sum()
+    },
+    bindSelectAll: function() {
+        // 环境中目前已选状态
+        var selectedAllStatus = this.data.selectedAllStatus;
+        // 取反操作
+         selectedAllStatus = !selectedAllStatus;
+        // 购物车数据，关键是处理selected值
+        // var carts = this.data.carts;
+        // // 遍历
+        // for (var i = 0; i < carts.length; i++) {
+        //     carts[i].selected = selectedAllStatus;
+        // }
+        var carts = this.data.selected
+        carts[0].select = selectedAllStatus
+        this.setData({
+            selectedAllStatus: selectedAllStatus,
+            // carts: carts
+            selected:carts
+        });
+        this.sum()
+    },
+    sum: function() {
+        var carts = this.data.carts.items;
+        console.log(carts)
+        // 计算总金额
+        var total = 0;
+        for (var i = 0; i < carts.length; i++) {
+            // if (!carts[i].selected) {
+            //     total += carts[i].totalAmount;
+            //     console.log(total)
+            // }
+            if(this.data.selectedAllStatus){
+                total += carts[i].totalAmount;
+                console.log(carts[i].totalAmount)
+            }
+        }
+        // 写回经点击修改后的数组
+        this.setData({
+            // carts: carts,
+            total: '￥' + total
+        });
     },
     onPullDownRefresh() {
         this.getCarts()
@@ -102,6 +164,7 @@ Page({
         })
     },
     onTapEdit(e) {
+        console.log(e.currentTarget.dataset.index)
         this.setData({
             canEdit: !!e.currentTarget.dataset.value
         })
