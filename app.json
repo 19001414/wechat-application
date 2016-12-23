@@ -15,7 +15,8 @@
     "pages/search/index",
     "pages/user/index",
     "pages/about/index",
-    "pages/help/index"
+    "pages/help/index",
+    "pages/login/index"
   ],
   "window": {
     "navigationBarBackgroundColor": "#479de6",

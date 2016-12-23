@@ -11,28 +11,12 @@ App({
 	onLaunch() {
 		console.log('onLaunch')
 		console.log('token', this.WxService.getStorageSync('token'))
-		// console.log('__HttpResource', typeof __HttpResource)
-		// console.log('HttpResource', typeof this.HttpResource)
-		this.signIn()
 	},
 	onShow() {
 		console.log('onShow')
 	},
 	onHide() {
 		console.log('onHide')
-	},
-	signIn() {
-		if (this.WxService.getStorageSync('token')) return
-		this.HttpService.signIn({
-			username: 'admin', 
-			password: '123456', 
-		})
-		.then(data => {
-			console.log(data)
-			if (data.meta.code == 0) {
-				this.WxService.setStorageSync('token', data.data.token)
-			}
-		})
 	},
 	getUserInfo() {
 		return this.WxService.login()
@@ -54,12 +38,6 @@ App({
         if (path.indexOf('http') !== -1) return path
         return `${this.Config.fileBasePath}${path}`
     },
-	// WxValidate: WxValidate, 
-	// HttpResource: HttpResource, 
-	// HttpService: new HttpService, 
-	// WxService: new WxService, 
-	// Tools: new Tools, 
-	// Config: Config, 
 	WxValidate: (rules, messages) => new WxValidate(rules, messages),
 	HttpResource: (url, paramDefaults, actions, options) => new HttpResource(url, paramDefaults, actions, options).init(),
 	HttpService: new HttpService,
