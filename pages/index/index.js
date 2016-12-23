@@ -59,11 +59,6 @@ Page({
         App.WxService.navigateTo('/pages/search/index')
     },
     getBanners() {
-        // console.log('getBanner')
-        // console.log('queryAsync', this.banner.queryAsync)
-        // console.log('queryAsync', typeof this.banner.queryAsync)
-        // console.log('this.banner', typeof this.banner)
-        // console.log('this.banner', Object.keys(this.banner))
     	//App.HttpService.getBanners({is_show: !0})
          this.banner.queryAsync({is_show: !0})
         .then(data => {
@@ -76,26 +71,6 @@ Page({
         	}
         })
     },
-    // getClassify() {
-    //     // App.HttpService.getClassify({
-    //     //     page: 1,
-    //     //     limit: 4,
-    //     // })
-    //     this.classify.queryAsync({
-    //         page: 1,
-    //         limit: 4,
-    //     })
-    //     .then(data => {
-    //         console.log(data)
-    //         if (data.meta.code == 0) {
-    //             this.setData({
-    //                 navList: data.data.items,
-    //                 'goods.params.type': data.data.items[0]._id
-    //             })
-    //             this.getGoods()
-    //         }
-    //     })
-    // },
     getGoods() {
         const goods = this.data.goods
         const params = goods.params
@@ -117,13 +92,12 @@ Page({
         })
     },
     onPullDownRefresh() {
-        const type = this.data.goods.params.type    
+        //const type = this.data.goods.params.type
         const goods = {
             items: [],
             params: {
                 page : 1,
                 limit: 10,
-                type : type,
             },
             paginate: {}
         }

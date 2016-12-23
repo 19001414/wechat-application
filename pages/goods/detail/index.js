@@ -37,7 +37,10 @@ Page({
         const good_id = this.data.goods.item._id
         console.log(good_id)
         App.HttpService.addCartByUser(good_id)
-        App.WxService.navigateTo('/pages/cart/index',good_id)
+        //App.WxService.navigateTo('/pages/cart/index',good_id)
+        App.WxService.switchTab({
+            url:'/pages/cart/index',
+        })
     },
     previewImage(e) {
         const urls = this.data.goods && this.data.goods.item.images.map(n => n.path)
@@ -50,22 +53,18 @@ Page({
         })
     },
     showToast(message) {
-        // App.WxService.showToast({
-        //     title   : message,
-        //     icon    : 'success',
-        //     duration: 1500,
-        // })
-        wx.showModal({
+        App.WxService.showModal({
             title:message,
             content:'',
             cancelText:'继续逛逛',
             confirmText:'立即结算',
-            success:function (res) {
-                if(res.confirm){
-                   // wx.redirectTo('/pages/cart/index')
-                    App.WxService.navigateTo('/pages/cart/index')
-                }
-            },
+        }).then(res =>{
+            console.log(res)
+            if(res.confirm){
+                App.WxService.switchTab({
+                    url:'/pages/cart/index'
+                })
+            }
         })
     },
     getDetail(id) {
