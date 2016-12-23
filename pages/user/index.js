@@ -17,12 +17,12 @@ Page({
 			{
 				icon: '../../assets/images/iconfont-kefu.png',
 				text: '联系客服',
-				path: '18521708248',
+				path: '18521708248'
 			}, 
 			{
 				icon: '../../assets/images/iconfont-help.png',
 				text: '常见问题',
-				path: '/pages/help/index',
+				path: '/pages/help/index'
 			},
 		],
 		settings: [
@@ -30,12 +30,12 @@ Page({
 				icon: '../../assets/images/iconfont-clear.png',
 				text: '清除缓存',
 				path: '0.0KB'
-			}, 
+			},
 			{
 				icon: '../../assets/images/iconfont-about.png',
 				text: '关于我们',
 				path: '/pages/about/index'
-			}, 
+			},
 		]
 	},
 	onLoad() {
